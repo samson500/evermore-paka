@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="en-NG">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#183D8E" />
+    <title>Evermore Platform — AI Training and Rewards Hub for Africa</title>
+    <meta
+      name="description"
+      content="Evermore is a member-based AI training hub for Africa. Train. Contribute. Get Rewarded. Join and contribute to real AI model training from anywhere."
+    />
+    <meta
+      name="keywords"
+      content="Evermore,AI training,AI contributor network,AI training hub Africa,data contribution,voice training,text annotation,image labeling"
+    />
+    <meta property="og:title" content="Evermore Platform — AI Training and Rewards Hub for Africa" />
+    <meta property="og:description" content="Train. Contribute. Get Rewarded. The member-based AI training hub for Africa." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_NG" />
+    <meta property="og:image" content="link-preview-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #183d8e;
+        --navy-600: #1e4fa8;
+        --navy-dark: #0d2246;
+        --green: #10b981;
+        --green-dark: #059669;
+        --cream: #fbf8f2;
+        --surface: #ffffff;
+        --ink: #17202b;
+        --ink-soft: #5b6472;
+        --ink-muted: #8a918e;
+        --border: #e9ecef;
+        --radius: 20px;
+        --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 24px 60px rgba(13, 34, 70, 0.12);
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        color: var(--ink);
+        background: var(--cream);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1, h2, h3, h4 {
+        font-family: "Poppins", sans-serif;
+        color: var(--navy-dark);
+        margin: 0;
+        line-height: 1.2;
+      }
+      p { margin: 0; }
+      a { text-decoration: none; color: inherit; }
+      img { max-width: 100%; display: block; }
+      .container {
+        width: 100%;
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: none;
+        border-radius: 999px;
+        padding: 0.85rem 1.6rem;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
+        white-space: nowrap;
+      }
+      .btn-green {
+        background: linear-gradient(135deg, #34d399, var(--green));
+        color: var(--navy-dark);
+        box-shadow: 0 12px 26px rgba(16, 185, 129, 0.3);
+      }
+      .btn-navy {
+        background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+        color: #fff;
+        box-shadow: 0 12px 26px rgba(24, 61, 142, 0.28);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--navy);
+        border: 1.5px solid rgba(24, 61, 142, 0.35);
+      }
+      .btn:hover { transform: translateY(-2px); }
+
+      /* ============ HEADER ============ */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(251, 248, 242, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-size: 1.15rem;
+        color: var(--navy-dark);
+      }
+      .brand img { height: 34px; width: auto; }
+      .nav-links { display: flex; align-items: center; gap: 1.6rem; }
+      .nav-links a {
+        font-size: 0.92rem;
+        font-weight: 500;
+        color: var(--ink-soft);
+        transition: color 0.2s;
+      }
+      .nav-links a:hover { color: var(--navy); }
+      .nav-cta { display: flex; align-items: center; gap: 0.6rem; }
+      .nav-cta .btn { padding: 0.6rem 1.2rem; font-size: 0.88rem; }
+      .signin-link {
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: var(--navy);
+        padding: 0.6rem 0.4rem;
+      }
+      .nav-toggle {
+        display: none;
+        background: none;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        width: 42px;
+        height: 42px;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        color: var(--navy-dark);
+      }
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        gap: 0.25rem;
+        padding: 0.75rem 1.25rem 1.25rem;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+      }
+      .mobile-menu.open { display: flex; }
+      .mobile-menu a {
+        padding: 0.7rem 0.5rem;
+        font-weight: 500;
+        color: var(--ink-soft);
+        border-bottom: 1px solid var(--border);
+      }
+      .mobile-menu a:last-of-type { border-bottom: none; }
+      .mobile-menu .btn { margin-top: 0.5rem; }
+
+      /* ============ HERO ============ */
+      .hero {
+        padding: 4.5rem 0 3.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -140px;
+        right: -140px;
+        width: 420px;
+        height: 420px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(16, 185, 129, 0.18), transparent 70%);
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: -180px;
+        left: -180px;
+        width: 460px;
+        height: 460px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(24, 61, 142, 0.14), transparent 70%);
+      }
+      .hero .container {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 3rem;
+        align-items: center;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--green-dark);
+        font-weight: 700;
+        background: rgba(16, 185, 129, 0.14);
+        border: 1px solid rgba(16, 185, 129, 0.35);
+        padding: 0.45rem 0.9rem;
+        border-radius: 999px;
+        margin-bottom: 1.2rem;
+      }
+      .hero h1 {
+        font-size: clamp(2.2rem, 5vw, 3.3rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+      }
+      .hero h1 span { color: var(--navy); }
+      .hero p.lead {
+        font-size: 1.05rem;
+        color: var(--ink-soft);
+        max-width: 480px;
+        margin-bottom: 1.8rem;
+      }
+      .hero-cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1.6rem; }
+      .hero-visual {
+        position: relative;
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid var(--border);
+      }
+      .hero-visual img { width: 100%; height: auto; }
+
+      /* ============ STATS ============ */
+      .stats { border-block: 1px solid var(--border); background: var(--surface); }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        padding: 2.2rem 1.25rem;
+      }
+      .stat { text-align: center; }
+      .stat strong {
+        display: block;
+        font-family: "Poppins", sans-serif;
+        font-size: 1.45rem;
+        font-weight: 800;
+        color: var(--navy);
+        line-height: 1.2;
+      }
+      .stat span { font-size: 0.85rem; color: var(--ink-muted); }
+
+      /* ============ SECTIONS ============ */
+      section.block { padding: 4.5rem 0; }
+      .section-head { text-align: center; max-width: 640px; margin: 0 auto 3rem; }
+      .section-head .kicker {
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--green-dark);
+        font-weight: 700;
+        margin-bottom: 0.6rem;
+      }
+      .section-head h2 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); font-weight: 700; margin-bottom: 0.8rem; }
+      .section-head p { color: var(--ink-soft); font-size: 1rem; }
+
+      /* ============ ABOUT ============ */
+      .about { background: var(--surface); border-block: 1px solid var(--border); }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3.5rem;
+        align-items: center;
+      }
+      .about-visual { border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-lg); }
+      .about h2 { font-size: 1.9rem; margin-bottom: 1rem; }
+      .about p { color: var(--ink-soft); margin-bottom: 1rem; }
+      .about .check {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        color: var(--navy-dark);
+        margin-bottom: 0.7rem;
+      }
+      .about .check svg { width: 20px; height: 20px; color: var(--navy); flex-shrink: 0; }
+
+      /* ============ FEATURES ============ */
+      .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+      .feature-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.7rem 1.5rem;
+        box-shadow: var(--shadow);
+        transition: transform 0.25s, box-shadow 0.25s;
+      }
+      .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+      .feature-card .num {
+        font-family: "Poppins", sans-serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--green-dark);
+        letter-spacing: 0.12em;
+        margin-bottom: 0.8rem;
+      }
+      .feature-card .icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        background: rgba(24, 61, 142, 0.08);
+        color: var(--navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+      .feature-card .icon svg { width: 24px; height: 24px; }
+      .feature-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+      .feature-card p { font-size: 0.88rem; color: var(--ink-soft); }
+
+      /* ============ HOW IT WORKS ============ */
+      .how { background: var(--surface); border-block: 1px solid var(--border); }
+      .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; counter-reset: step; }
+      .how-card {
+        position: relative;
+        background: var(--cream);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 2rem 1.6rem;
+      }
+      .how-card .step {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.1rem;
+      }
+      .how-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+      .how-card p { font-size: 0.9rem; color: var(--ink-soft); }
+
+      /* ============ REWARDS ============ */
+      .rewards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .reward-card {
+        display: flex;
+        gap: 1.1rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.6rem;
+        box-shadow: var(--shadow);
+      }
+      .reward-card .icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 13px;
+        flex-shrink: 0;
+        background: rgba(16, 185, 129, 0.16);
+        color: var(--green-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .reward-card .icon svg { width: 22px; height: 22px; }
+      .reward-card h3 { font-size: 1.02rem; margin-bottom: 0.35rem; }
+      .reward-card p { font-size: 0.88rem; color: var(--ink-soft); }
+
+      /* ============ FAQ ============ */
+      .faq { background: var(--surface); border-block: 1px solid var(--border); }
+      .faq-list { max-width: 720px; margin: 0 auto; }
+      .faq-item {
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: var(--cream);
+        margin-bottom: 0.85rem;
+        overflow: hidden;
+      }
+      .faq-q {
+        width: 100%;
+        text-align: left;
+        background: none;
+        border: none;
+        padding: 1.15rem 1.3rem;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--navy-dark);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .faq-q .chev { transition: transform 0.25s; color: var(--navy); flex-shrink: 0; }
+      .faq-item.open .chev { transform: rotate(180deg); }
+      .faq-a {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .faq-a p { padding: 0 1.3rem 1.2rem; font-size: 0.9rem; color: var(--ink-soft); }
+      .faq-help { text-align: center; margin-top: 1.5rem; font-size: 0.92rem; color: var(--ink-soft); }
+      .faq-help a { color: var(--navy); font-weight: 600; }
+
+      /* ============ CTA ============ */
+      .cta {
+        text-align: center;
+        padding: 5rem 0;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+        color: #fff;
+      }
+      .cta h2 { color: #fff; font-size: clamp(1.7rem, 3.6vw, 2.4rem); margin-bottom: 0.8rem; }
+      .cta p { color: rgba(255, 255, 255, 0.78); max-width: 520px; margin: 0 auto 1.8rem; }
+      .cta .btn-green { box-shadow: 0 14px 34px rgba(0, 0, 0, 0.25); }
+      .cta-note { margin-top: 1.1rem; font-size: 0.82rem; color: rgba(255, 255, 255, 0.55); }
+
+      /* ============ FOOTER ============ */
+      .site-footer { background: var(--navy-dark); color: rgba(255, 255, 255, 0.7); }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr;
+        gap: 2.5rem;
+        padding: 3.5rem 1.25rem 2rem;
+      }
+      .footer-brand { display: flex; align-items: center; gap: 10px; font-family: "Poppins", sans-serif; font-weight: 800; font-size: 1.1rem; color: #fff; margin-bottom: 0.9rem; }
+      .footer-brand img { height: 32px; width: auto; border-radius: 8px; }
+      .footer-brand p { font-family: "Inter", sans-serif; font-weight: 400; font-size: 0.92rem; color: rgba(255, 255, 255, 0.7); margin-top: 0.5rem; line-height: 1.7; }
+      .footer-col h4 {
+        color: #fff;
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+      .footer-col a, .footer-col span {
+        display: block;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 0.6rem;
+        transition: color 0.2s;
+      }
+      .footer-col a:hover { color: var(--green); }
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 1.4rem 1.25rem;
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.45);
+        text-align: center;
+        line-height: 1.8;
+      }
+
+      /* ============ RESPONSIVE ============ */
+      @media (max-width: 900px) {
+        .hero .container { grid-template-columns: 1fr; text-align: center; }
+        .hero p.lead { margin-left: auto; margin-right: auto; }
+        .hero-cta, .hero-badges { justify-content: center; }
+        .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        .feature-grid { grid-template-columns: repeat(2, 1fr); }
+        .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+        .how-grid { grid-template-columns: 1fr; }
+        .rewards-grid { grid-template-columns: 1fr; }
+        .footer-grid { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 640px) {
+        .nav-links, .nav-cta .signin-link, .nav-cta .btn { display: none; }
+        .nav-toggle { display: flex; }
+        .feature-grid { grid-template-columns: 1fr; }
+        .footer-grid { grid-template-columns: 1fr; }
+        .hero { padding: 3rem 0 2.5rem; }
+        section.block { padding: 3rem 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============ HEADER ============ -->
+    <header class="site-header">
+      <div class="container">
+        <nav class="nav">
+          <a class="brand" href="index.html">
+            <img src="favicon/apple-touch-icon.png" alt="Evermore" />
+            <span>Evermore</span>
+          </a>
+          <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#rewards">Rewards</a>
+            <a href="#faq">FAQs</a>
+          </div>
+          <div class="nav-cta">
+            <a class="signin-link" href="login.html">Sign In</a>
+            <a class="btn btn-green" href="signup.html">Join Now</a>
+          </div>
+          <button class="nav-toggle" id="navToggle" aria-label="Menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+          </button>
+        </nav>
+      </div>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#rewards">Rewards</a>
+        <a href="#faq">FAQs</a>
+        <a href="login.html">Sign In</a>
+        <a class="btn btn-green" href="signup.html">Join Now</a>
+      </div>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="container">
+        <div>
+          <span class="eyebrow">AI training &amp; rewards hub for Africa</span>
+          <h1>Train. Contribute. <span>Get Rewarded.</span></h1>
+          <p class="lead">
+            Evermore is a member-based AI training hub built for Africa. Contribute to real AI model
+            training from anywhere and earn rewards for every verified contribution.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-green" href="signup.html">Join Now</a>
+            <a class="btn btn-outline" href="#how-it-works">How It Works</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="hero-image.webp" alt="Evermore contributors training AI" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATS ============ -->
+    <section class="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat"><strong>Train</strong><span>Voice, text, image &amp; brand tasks</span></div>
+          <div class="stat"><strong>Contribute</strong><span>Real AI model training</span></div>
+          <div class="stat"><strong>Get Rewarded</strong><span>Every verified task counts</span></div>
+          <div class="stat"><strong>From anywhere</strong><span>Built for Africa</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="block about" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-visual">
+            <img src="about.webp" alt="Built in Lagos, built for Africa" />
+          </div>
+          <div>
+            <span class="kicker" style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-dark);font-weight:700;">About Evermore</span>
+            <h2>Built in Lagos, Nigeria. Built for Africa.</h2>
+            <p>
+              Evermore is a member-based AI training hub headquartered in Lagos, Nigeria. Members
+              contribute to real AI model training — voice training, text annotation, image labeling,
+              and brand feedback review — and get rewarded for their contributions.
+            </p>
+            <p>
+              No longer location-restricted. You can contribute from anywhere and help build AI that
+              understands African accents, languages, and everyday life.
+            </p>
+            <div style="margin-top:1.2rem;">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Train from anywhere</div>
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Contribute to real AI models</div>
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Get rewarded for every verified task</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURES ============ -->
+    <section class="block" id="features">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Contributions</span>
+          <h2>Multiple ways to be rewarded</h2>
+          <p>Pick the contribution style that suits you — every verified contribution counts toward your rewards wallet.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="num">01</div>
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg></div>
+            <h3>Voice training</h3>
+            <p>Record and refine speech samples that help AI models understand African accents and languages.</p>
+          </div>
+          <div class="feature-card">
+            <div class="num">02</div>
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></div>
+            <h3>Text annotation</h3>
+            <p>Annotate and structure text to help language models communicate naturally in African contexts.</p>
+          </div>
+          <div class="feature-card">
+            <div class="num">03</div>
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+            <h3>Image labeling</h3>
+            <p>Label and review image data to improve how vision models see everyday life across Africa.</p>
+          </div>
+          <div class="feature-card">
+            <div class="num">04</div>
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/></svg></div>
+            <h3>Brand feedback</h3>
+            <p>Review brand campaigns and share structured feedback that shapes better marketing AI.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="block how" id="how-it-works">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">How It Works</span>
+          <h2>Start earning in three simple steps</h2>
+          <p>From sign-up to your first reward — it only takes a few minutes.</p>
+        </div>
+        <div class="how-grid">
+          <div class="how-card">
+            <div class="step">1</div>
+            <h3>Join Evermore</h3>
+            <p>Create your account and activate your membership to unlock training tasks and withdrawals. No monthly fees, no auto-renewals.</p>
+          </div>
+          <div class="how-card">
+            <div class="step">2</div>
+            <h3>Complete tasks</h3>
+            <p>Pick from voice training, text annotation, image labeling, and brand feedback. Every verified contribution is credited to your wallet.</p>
+          </div>
+          <div class="how-card">
+            <div class="step">3</div>
+            <h3>Earn &amp; withdraw</h3>
+            <p>Watch your rewards grow and request a withdrawal once your balance reaches the ₦20,000 threshold.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REWARDS ============ -->
+    <section class="block" id="rewards">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Member Benefits</span>
+          <h2>Rewards that recognize your contribution</h2>
+          <p>A benefits program built to recognize every contribution you make.</p>
+        </div>
+        <div class="rewards-grid">
+          <div class="reward-card">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg></div>
+            <div><h3>Rewards per task</h3><p>Every verified contribution adds reward points to your wallet, credited after completion.</p></div>
+          </div>
+          <div class="reward-card">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-8-8"/><path d="M12 2v4m6.364-.364-2.828 2.828"/></svg></div>
+            <div><h3>Daily streaks</h3><p>Stay active and your daily streak grows. Consistent contributions are recognized over time.</p></div>
+          </div>
+          <div class="reward-card">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-2 5h6l-1 3"/><path d="M6 3h.01M2 12h.01M8 20h.01M4 8h.01M17 18h.01M20 15h.01"/><path d="M12 22l1-4-3 2-1 2z"/></svg></div>
+            <div><h3>Milestone recognition</h3><p>Reach contribution milestones to receive recognition and loyalty benefits.</p></div>
+          </div>
+          <div class="reward-card">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div><h3>Community &amp; recognition</h3><p>Join a community of contributors across Africa building the future of AI together.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="block faq" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">FAQs</span>
+          <h2>Frequently asked questions</h2>
+          <p>Everything you need to know before you join.</p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <button class="faq-q">What is Evermore?
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Evermore is a member-based AI training hub for Africa. Members join the platform, contribute to AI model training — voice training, text annotation, image labeling, and brand feedback review — and get rewarded for their contributions. Reward rates are subject to change at our sole discretion.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">Is this a member-based network?
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Yes. Evermore operates on a one-time membership. After activation you get access to training tasks, your rewards wallet, and withdrawals.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">How much does it cost?
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Membership is activated with a one-time fee. No monthly fees, no hidden charges, and no auto-renewals.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">How do I get rewarded?
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Complete training tasks correctly. Each verified contribution is credited to your rewards wallet, and you can withdraw once your balance reaches ₦20,000.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">What kinds of tasks will I contribute to?
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>You'll contribute to voice training, text annotation, image labeling, and brand feedback review tasks that help improve real AI models.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">Is my data safe?
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Yes. Evermore takes data protection seriously, with TLS in transit and encryption at rest.</p></div>
+          </div>
+        </div>
+        <p class="faq-help">Still have questions? <a href="mailto:support@evermore.ng">Email our support team</a>.</p>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta">
+      <div class="container">
+        <h2>Ready to start contributing?</h2>
+        <p>Activate your membership in minutes — no monthly fees, no auto-renewals.</p>
+        <a class="btn btn-green" href="signup.html">Join Now</a>
+        <p class="cta-note">The future of AI is being built with African voices — and every member is part of it.</p>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand">
+              <img src="favicon/apple-touch-icon.png" alt="Evermore" />
+              <span>Evermore</span>
+            </div>
+            <p>Part of the member-based AI training hub for Africa. Train. Contribute. Get Rewarded.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Platform</h4>
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#faq">FAQs</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          Reward rates, eligible activities, qualifying brands, and benefit structures are subject to change at our
+          sole discretion. We do not guarantee any specific level of income, reward, or benefit.
+          <br />© 2026 Evermore. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var toggle = document.getElementById("navToggle");
+        var menu = document.getElementById("mobileMenu");
+        toggle.addEventListener("click", function () {
+          menu.classList.toggle("open");
+        });
+        document.querySelectorAll(".faq-q").forEach(function (q) {
+          q.addEventListener("click", function () {
+            var item = q.parentElement;
+            var isOpen = item.classList.contains("open");
+            document.querySelectorAll(".faq-item.open").forEach(function (o) {
+              o.classList.remove("open");
+              o.querySelector(".faq-a").style.maxHeight = null;
+            });
+            if (!isOpen) {
+              item.classList.add("open");
+              var a = item.querySelector(".faq-a");
+              a.style.maxHeight = a.scrollHeight + "px";
+            }
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
