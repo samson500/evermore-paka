@@ -17,12 +17,13 @@
   };
 
   const DEFAULT_CONFIG = {
+    configVersion: 2,
     membershipPrice: 15000,
     paymentLink: "",
     telegramLink: "",
     whatsappLink: "",
-    dailyCap: 14000,
-    withdrawMin: 20000,
+    dailyCap: 64900,
+    withdrawMin: 83000,
     taskDailyLimit: 2,
   };
 
@@ -44,6 +45,19 @@
   function remove(key) {
     localStorage.removeItem(key);
   }
+
+  // One-time migration: older versions persisted dailyCap/withdrawMin into
+  // localStorage, which overrides DEFAULT_CONFIG. Reset them when the stored
+  // config predates the current version so the new defaults take effect.
+  (function migrateConfig() {
+    const stored = get(LS.config, null);
+    if (stored && typeof stored === "object" && Number(stored.configVersion) !== 2) {
+      stored.dailyCap = DEFAULT_CONFIG.dailyCap;
+      stored.withdrawMin = DEFAULT_CONFIG.withdrawMin;
+      stored.configVersion = 2;
+      set(LS.config, stored);
+    }
+  })();
 
   let remoteConfig = {};
 
